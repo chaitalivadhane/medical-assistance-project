@@ -33,10 +33,11 @@ class PatientController (
         return patientService.addPatient(patient)
     }
 
-    @PutMapping("/update/{id}")
-    fun updateById( @PathVariable("id") id: String,@RequestBody  patient: Patient): Mono<Patient> {
-        return patientService.updatePatient(patient)
-    }
+//
+@PutMapping("/update/{id}")
+fun updateById( @PathVariable id: String,@RequestBody  patient: Patient): Mono<Patient> {
+    return patientService.updatePatientById(id,patient)
+}
 
 //    @PutMapping("/updatePatient")
 //    fun update(@RequestBody patient: Patient): Mono<Patient> {

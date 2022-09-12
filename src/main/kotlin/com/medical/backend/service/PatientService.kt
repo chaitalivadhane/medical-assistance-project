@@ -23,11 +23,14 @@ class PatientService(
         return patientRepository.save(patient)
 
     }
-    fun updatePatient(patient:Patient):Mono<Patient>{
-        return patientRepository.save(patient)
-    }
+//    fun updatePatient(patient:Patient):Mono<Patient>{
+//        return patientRepository.save(patient)
+//    }
+fun updatePatientById(id:String, patient: Patient):Mono<Patient>{
+    return patientRepository.save(patient)
+}
 
-    fun deleteById(id: String): Mono<Void>{
+    fun deleteById(id: String): Mono<Void> {
         return patientRepository.deleteById(id)
     }
 
