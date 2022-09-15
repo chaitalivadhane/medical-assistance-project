@@ -112,9 +112,38 @@ class BookAppointmentControllerTest {
             bookAppointmentService.updateAppointmentById("1",bookAppointment)
         }
     }
+    @Test
+    fun `should delete patient `() {
+        val bookAppointment = BookAppointment(
+            "1", "Chaitali", "Dr.Shukala", "Pune", "chv@gmail.com", "9325059460",
+            "14/09/2022","Cold"
+        )
 
 
+        val expectedResult = mapOf(
+            "patientId" to "1",
+            "patientName" to "Chaitali",
+            "doctorName" to "Dr.Shukala",
+            "address" to "Pune",
+            "email" to "chv@gmail.com",
+            "mobileNumber" to "9325059460",
+            "dateofAppointment" to "14/09/2022",
+            "reason" to "Cold"
+        )
+        every {
+            bookAppointmentService.deleteById("1")
+        } returns Mono.empty()
 
+        val response = client.delete()
+            .uri("/Appointment/1")
+            // .accept(MediaType.APPLICATION_JSON)
+            .exchange() //invoking the end point
+            .expectStatus().is2xxSuccessful
+
+        verify(exactly = 1) {
+            bookAppointmentService.deleteById("1")
+        }
+    }
 
 }
 

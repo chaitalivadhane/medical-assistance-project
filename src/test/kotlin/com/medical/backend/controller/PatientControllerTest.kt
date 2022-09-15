@@ -46,12 +46,13 @@ class PatientControllerTest {
     @Test
 
     fun `should return list  `() {
+        //Arranging data members
         val patient1 = Patient(
             "1", "Chaitali", "Vadhane", "chv", "9325059460",
             "chv@gmail.com", "female", "30/03/1997", "chv@00", "Pune"
         )
 
-
+       //expectations
         val expectedResult = mapOf(
             "patientId" to "1",
             "patientFirstName" to "Chaitali",
@@ -64,10 +65,13 @@ class PatientControllerTest {
             "password" to "chv@00",
             "address" to "Pune"
         )
+
+        //Action invoking the methods
         every {
             patientService.findAllPatients()
         } returns Flux.just(patient1)
 
+        //Assertions
         val response = client.get()
             .uri("/patients/list")
             .accept(MediaType.APPLICATION_JSON)
@@ -197,45 +201,41 @@ fun `should able to update patient`(){
     }
 }
 
-//    @Test
-//
-//    fun `should delete patient `() {
-//        val patient1 = Patient(
-//            "1", "Chaitali", "Vadhane", "chv", "9325059460", "chv@gmail.com", "female", "30/03/1997",
-//            "chv@00", "Pune"
-//        )
-//
-//
-//        val expectedResult = mapOf(
-//            "patientId" to "1",
-//            "patientFirstName" to "Chaitali",
-//            "patientLastname" to "Vadhane",
-//            "userName" to "chv",
-//            "mobileNumber" to "9325059460",
-//            "email" to "chv@gmail.com",
-//            "gender" to "female",
-//            "dob" to "30/03/1997",
-//            "password" to "chv@00",
-//            "address" to "Pune"
-//        )
-//        every {
-//            patientService.deleteById("1")
-//        } returns Mono.just(patient1)
-//
-//        val response = client.delete()
-//            .uri("/patients/1")
-//            .accept(MediaType.APPLICATION_JSON)
-//            .exchange() //invoking the end point
-//            .expectStatus().is2xxSuccessful
-//            .returnResult<Any>()
-//            .responseBody
-//
-//        response.blockFirst() shouldBe expectedResult
-//
-//        verify(exactly = 1) {
-//            patientService.deleteById("1")
-//        }
-//    }
+    @Test
+
+    fun `should delete patient `() {
+        val patient1 = Patient(
+            "1", "Chaitali", "Vadhane", "chv", "9325059460", "chv@gmail.com", "female", "30/03/1997",
+            "chv@00", "Pune"
+        )
+
+
+        val expectedResult = mapOf(
+            "patientId" to "1",
+            "patientFirstName" to "Chaitali",
+            "patientLastname" to "Vadhane",
+            "userName" to "chv",
+            "mobileNumber" to "9325059460",
+            "email" to "chv@gmail.com",
+            "gender" to "female",
+            "dob" to "30/03/1997",
+            "password" to "chv@00",
+            "address" to "Pune"
+        )
+        every {
+            patientService.deleteById("1")
+        } returns Mono.empty()
+
+        val response = client.delete()
+            .uri("/patients/1")
+           // .accept(MediaType.APPLICATION_JSON)
+            .exchange() //invoking the end point
+            .expectStatus().is2xxSuccessful
+
+        verify(exactly = 1) {
+            patientService.deleteById("1")
+        }
+    }
 
 
 
