@@ -1,6 +1,7 @@
 package com.medical.backend.service
 
 import com.medical.backend.model.BookAppointment
+import com.medical.backend.model.Patient
 import com.medical.backend.repository.BookAppointmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -20,9 +21,11 @@ class BookAppointmentService(
     }
 
 
-    fun updateAppointment(bookAppointment: BookAppointment):Mono<BookAppointment>{
+    fun updateAppointmentById(id :String,bookAppointment: BookAppointment):Mono<BookAppointment>{
         return bookAppointmentRepository.save(bookAppointment)
     }
+
+
 
     fun deleteById(id: String): Mono<Void> {
         return bookAppointmentRepository.deleteById(id)

@@ -1,6 +1,7 @@
 package com.medical.backend.controller
 
 import com.medical.backend.model.BookAppointment
+import com.medical.backend.model.Patient
 
 import com.medical.backend.repository.BookAppointmentRepository
 import com.medical.backend.service.BookAppointmentService
@@ -27,8 +28,10 @@ BookAppointmentController (
 
     @PutMapping("/updateAppointment/{id}")
     fun update(@PathVariable("id") id: String,@RequestBody bookAppointment: BookAppointment): Mono<BookAppointment> {
-        return bookAppointmentService.updateAppointment(bookAppointment)
+        return bookAppointmentService.updateAppointmentById(id,bookAppointment)
     }
+
+
 
     @DeleteMapping("/Appointment/{id}")
     fun delete(@PathVariable id: String): Mono<Void> {
