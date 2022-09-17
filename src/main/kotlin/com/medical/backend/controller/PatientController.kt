@@ -39,10 +39,6 @@ fun updateById( @PathVariable id: String,@RequestBody  patient: Patient): Mono<P
     return patientService.updatePatientById(id,patient)
 }
 
-//    @PutMapping("/updatePatient")
-//    fun update(@RequestBody patient: Patient): Mono<Patient> {
-//        return patientService.updatePatient(patient)
-//    }
 
     @DeleteMapping
     fun delete(): Mono<Void> {

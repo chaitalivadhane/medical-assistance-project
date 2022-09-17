@@ -1,11 +1,9 @@
 package com.medical.backend.service
 
 import com.medical.backend.model.BookAppointment
-import com.medical.backend.model.Patient
 import com.medical.backend.repository.BookAppointmentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.RequestBody
 import reactor.core.publisher.Mono
 
 

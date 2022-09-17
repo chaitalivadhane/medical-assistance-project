@@ -15,17 +15,6 @@ class PatientLoginService(
 ) {
 
 
-    //    @PostMapping("/signin")
-//    fun authenticateUser(@RequestBody patient: Patient): Mono<String?>? {
-//        val authentication: Authentication = authenticationManager.authenticate(
-//            UsernamePasswordAuthenticationToken(
-//                loginDto.getUsernameOrEmail(), loginDto.getPassword()
-//            )
-//        )
-//        SecurityContextHolder.getContext().setAuthentication(authentication)
-//        return ResponseEntity("User signed-in successfully!.", HttpStatus.OK)
-//    }
-
 
     fun patientLogin(loginRequest: LoginRequest): Mono<Patient> {
         return patientRepository.findByName(loginRequest)

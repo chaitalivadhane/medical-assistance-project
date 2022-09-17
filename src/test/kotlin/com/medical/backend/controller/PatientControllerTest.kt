@@ -34,14 +34,7 @@ class PatientControllerTest {
     @Autowired
     lateinit var patientRepository: PatientRepository
 
-    @TestConfiguration
-    class ControllerTestConfig {
-        @Bean
-        fun patientService() = mockk<PatientService>()
 
-        @Bean
-        fun patientRepository() = mockk<PatientRepository>()
-    }
 
     @Test
 
@@ -186,7 +179,7 @@ fun `should able to update patient`(){
 
 
     every {
-        patientService.updatePatientById("2",patient)
+        patientService.updatePatientById("1",patient)
     }returns Mono.just(patient)
 
 
@@ -197,7 +190,7 @@ fun `should able to update patient`(){
         .expectStatus().is2xxSuccessful
 
     verify(exactly = 1){
-        patientService.updatePatientById("2",patient)
+        patientService.updatePatientById("1",patient)
     }
 }
 
@@ -240,6 +233,15 @@ fun `should able to update patient`(){
 
 
  }
+@TestConfiguration
+class ControllerTestConfig {
+    @Bean
+    fun patientService() = mockk<PatientService>()
+
+    @Bean
+    fun patientRepository() = mockk<PatientRepository>()
+}
+
 
 
 

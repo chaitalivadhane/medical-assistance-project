@@ -28,10 +28,5 @@ class PatientLoginController(
         return patientLoginService.patientLogin(loginRequest)
   }
 
-    @PostMapping("/signup")
-    fun authenticateUser(@RequestBody Patient: Patient?): ResponseEntity<*>? {
-        //mail.sendMail(new NotificationEmail("Sign Up",registerRequest.getEmail(),"You have successfully created account with us!!!\n"+"Click here to login with your account- \n"+"https://localhost:8080/sign_in"));
-        return ResponseEntity("User Registered Successfully!!!", HttpStatus.OK)
-    }
 
 }

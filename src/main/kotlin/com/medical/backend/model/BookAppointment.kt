@@ -13,7 +13,6 @@ data class BookAppointment(
     val address :String?,
     val email:String?,
     val mobileNumber:String?,
-        val dateofAppointment:String?,
-//    val category:String?,
+    val dateofAppointment:String?,
     val reason:String?,
     )
